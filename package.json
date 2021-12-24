@@ -1,0 +1,63 @@
+{
+  "name": "awesomlytested",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check .",
+    "lint": "yarn lint:js && yarn lint:prettier",
+    "lintfix": "prettier --write --list-different . && yarn lint:js --fix",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,vue}": "eslint --cache",
+    "*.**": "prettier --check --ignore-unknown"
+  },
+  "dependencies": {
+    "@headlessui/vue": "^1.4.2",
+    "@heroicons/vue": "^1.0.5",
+    "@nuxt-hero-icons/outline": "^1.0.1",
+    "@nuxtjs/axios": "^5.13.6",
+    "core-js": "^3.19.3",
+    "fuse.js": "^6.5.3",
+    "global": "^4.4.0",
+    "nanoid": "^3.1.30",
+    "netlify-cli": "^8.1.8",
+    "node-fetch": "^2.6.6",
+    "nuxt": "^2.15.8",
+    "v-hotkey": "^0.9.0",
+    "vue": "^2.6.14",
+    "vue-autosuggest": "^2.2.0",
+    "vue-code-highlight": "^0.7.8",
+    "vue-debounce": "^3.0.1",
+    "vue-server-renderer": "^2.6.14",
+    "vue-template-compiler": "^2.6.14",
+    "webpack": "^4.46.0"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.16.3",
+    "@babel/plugin-syntax-flow": "^7.16.5",
+    "@babel/plugin-syntax-jsx": "^7.16.5",
+    "@nuxt-hero-icons/solid": "^1.0.1",
+    "@nuxtjs/eslint-config": "^8.0.0",
+    "@nuxtjs/eslint-module": "^3.0.2",
+    "@nuxtjs/tailwindcss": "^4.2.1",
+    "babel-plugin-jsx": "^1.2.0",
+    "check-tests": "^0.7.2",
+    "dotenv": "^10.0.0",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-nuxt": "^3.1.0",
+    "eslint-plugin-vue": "^8.2.0",
+    "glob": "^7.2.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2",
+    "postcss": "^8.4.4",
+    "prettier": "^2.5.1",
+    "runok": "^0.9.3"
+  }
+}
