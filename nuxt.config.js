@@ -1,4 +1,5 @@
 import path from 'path'
+import fs from 'fs'
 import glob from 'glob'
 
 require('dotenv').config()
@@ -19,14 +20,17 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '@/plugins/vue-shortkey.js', mode: 'client' }],
+  plugins: [
+    { src: '@/plugins/vue-shortkey.js', mode: 'client' },
+    { src: '@/plugins/infinite-scroll.js', mode: 'client' },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -61,17 +65,30 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {
-      if (ctx.isServer) {
-        const files = glob.sync(
-          path.join(__dirname, 'static', 'data', '**.json')
-        )
-        for (const file of files) {
-          // if (!file || !file.name) continue;
-          // console.log(file.name);
-          const repo = path.basename(file).replace('.json', '')
-          this.buildContext.options.generate.routes.push(`/${repo}`)
-        }
+      // if (ctx.isServer) {
+      // }
+    },
+  },
+  generate: {
+    routes() {
+      const files = glob.sync(
+        path.join(__dirname, 'static', 'data', '*.json'),
+        { ignore: 'node_modules' }
+      )
+      const routes = ['/']
+      for (const file of files) {
+        // if (!file || !file.name) continue;
+        // console.log(file.name);
+        const data = JSON.parse(fs.readFileSync(file))
+        if (data.error) continue
+        if (!data.tests) continue
+        // if (!data.tests.length) continue;
+        const url = data.repo.toLowerCase().replace('.js', '_js')
+        routes.push(`/${url}`)
+        // console.log('added route')
       }
+      return routes
+      // return getData().map(d => `headlines/${d.code}`);
     },
   },
 }

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="90" height="20">
+  <defs>
+    <linearGradient id="tests-fill" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop stop-color="#444D56" offset="0%"></stop>
+      <stop stop-color="#24292E" offset="100%"></stop>
+    </linearGradient>
+    <linearGradient id="state-fill" x1="50%" y1="0%" x2="50%" y2="100%">
+        <stop offset="18%" style="stop-color:rgb(41,187,151);stop-opacity:1.00" />
+        <stop offset="100%" style="stop-color:rgb(0,197,114);stop-opacity:1.00" />
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <g font-family="Roboto,Verdana,Geneva,sans-serif" font-size="11">
+      <path id="tests-bg" d="M0,3 C0,1.3431 1.3552,0 3.02702703,0 L40,0 L40,20 L3.02702703,20 C1.3552,20 0,18.6569 0,17 L0,3 Z" fill="url(#tests-fill)" fill-rule="nonzero"></path>
+      <text fill="#010101" fill-opacity=".3">
+        <tspan x="6" y="15">Tests</tspan>
+      </text>
+      <text fill="#FFFFFF">
+        <tspan x="6" y="14">Tests</tspan>
+      </text>
+    </g>
+
+    <g transform="translate(40)" font-family="Roboto,Verdana,Geneva,sans-serif" font-width="bold" font-size="11">
+      <path d="M0 0h46.939C48.629 0 50 1.343 50 3v14c0 1.657-1.37 3-3.061 3H0V0z" id="state-bg" fill="url(#state-fill)" fill-rule="nonzero"></path>
+    <path style="fill: rgba(200,200,200,0.4); height: 10px;" width="5" transform="translate(15)" height="5" d="M22.903 2.828 20.075 0 6.641 13.435 3.102 9.09 0 11.616l6.338 7.779L22.903 2.828z"/>
+      <text fill="#010101" fill-opacity=".3" text-anchor="middle" >
+        <tspan x="25%" y="15">180</tspan>
+      </text>
+      <text fill="#FFFFFF" text-anchor="middle">
+        <tspan x="25%" y="14">180</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

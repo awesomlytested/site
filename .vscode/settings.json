@@ -1,4 +1,10 @@
 {
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/tmp": true,
+    "**/bower_components": true,
+    "**/builds": true
+  },
   "tailwindCSS.emmetCompletions": true,
   "tailwindCSS.includeLanguages": {
     "vue": "html",
