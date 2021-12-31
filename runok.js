@@ -25,6 +25,16 @@ module.exports = {
     }
   },
 
+  list() {
+
+  },
+
+  predeploy() {
+    
+  }
+
+
+
 }
 
 if (require.main === module) runok(module.exports)

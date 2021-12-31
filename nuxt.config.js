@@ -24,12 +24,13 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['vue-json-pretty/lib/styles.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '@/plugins/vue-shortkey.js', mode: 'client' },
     { src: '@/plugins/infinite-scroll.js', mode: 'client' },
+    { src: '@/plugins/vue-json-pretty.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -49,7 +50,10 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    'nuxt-clipboard2',
   ],
+
+  // serverMiddleware: process.env.NODE_ENV === 'production' ? [] : ['~/api/add.js'],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
