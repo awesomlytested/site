@@ -3,6 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const {
   runok,
+  tasks: { exec, git },
 } = require('runok')
 const glob = require('glob')
 
@@ -25,12 +26,13 @@ module.exports = {
     }
   },
 
-  list() {
+  async predeploy() {
+    await git.clone('git@github.com:awesomlytested/list.git', '')
+    // clone awesome-list
+    // ...????
+    this.badges();
 
-  },
 
-  predeploy() {
-    
   }
 
 
