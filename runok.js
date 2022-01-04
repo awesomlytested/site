@@ -3,7 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const {
   runok,
-  tasks: { exec, git },
+  tasks: { exec },
 } = require('runok')
 const glob = require('glob')
 
@@ -27,12 +27,13 @@ module.exports = {
   },
 
   async predeploy() {
-    await git.clone('git@github.com:awesomlytested/list.git', '')
-    // clone awesome-list
-    // ...????
+    if (!fs.existsSync('tmp/list')) {
+      await exec('git clone https://github.com/awesomlytested/list.git tmp/list --depth=1');
+    } else {
+      await exec('git pull');
+    }
+    fs.symlinkSync(path.join(__dirname, 'tmp/list/output'), path.join(__dirname, 'static/data'));
     this.badges();
-
-
   }
 
 

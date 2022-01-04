@@ -8,6 +8,7 @@
     "start": "nuxt start",
     "serve": "vc dev -A vercel.dev.json",
     "generate": "nuxt generate",
+    "deploy": "./runok.js predeploy && nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint:prettier": "prettier --check .",
     "lint": "yarn lint:js && yarn lint:prettier",
@@ -16,7 +17,7 @@
   },
   "lint-staged": {
     "*.{js,vue}": "eslint --cache",
-    "*.{js,vue}": "prettier --check --ignore-unknown"
+    "*.**": "prettier --check --ignore-unknown"
   },
   "dependencies": {
     "@headlessui/vue": "^1.4.2",
