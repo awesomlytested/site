@@ -208,7 +208,7 @@ export default {
   asyncData({ $axios, params }) {
     if (process.static) {
 
-      import('@/static/list.json').then((data) => {
+      import('../static/list.json').then((data) => {
         return {
           data,
           list: data.slice(0, 32).filter(d => !!d.repo),
