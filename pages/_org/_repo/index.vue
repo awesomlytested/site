@@ -203,9 +203,26 @@ export default {
 
   asyncData({ $axios, params }) {
     const dataFile = `${params.org.toLowerCase()}__${params.repo.toLowerCase()}`
+
+    if (process.static) {
+      import(`@/static/data/${dataFile}.json` ).then((data) => {
+        if (data.tests)
+          data.tests.forEach((t) => {
+            t.codeIsShown = false
+            t.id = nanoid()
+          })
+        return {
+          data,
+          tests: data.tests.slice(0, perPage),
+        }
+      });      
+    }
+
+    const baseUrl = this.$axios.defaults.baseURL;
+
     return (
       $axios
-        .get(`https://site-rho-nine.vercel.app/data/${dataFile}.json`)
+        .get(`${baseUrl}/data/${dataFile}.json`)
         // eslint-disable-next-line arrow-body-style
         .then(({ data }) => {
           if (data.tests)
