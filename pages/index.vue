@@ -206,9 +206,21 @@ export default {
     AwesomeBadge,
   },
   asyncData({ $axios, params }) {
+    if (process.static) {
+
+      const fs = require('fs')
+      const data = JSON.parse(fs.readFileSync(`static/data/list.json`, 'utf8'))
+
+      return {
+        data,
+        list: data.slice(0, 32).filter(d => !!d.repo),
+      }
+    }
+    const baseUrl = this.$axios.defaults.baseURL;
+
     return (
       $axios
-        .get(`https://site-rho-nine.vercel.app/data/list.json`)
+        .get(`${baseUrl}/data/list.json`)
         // eslint-disable-next-line arrow-body-style
         .then(({ data }) => {
           return {
