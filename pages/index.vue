@@ -213,7 +213,7 @@ export default {
         .then(({ data }) => {
           return {
             data,
-            list: data.slice(0, 32),
+            list: data.slice(0, 32).filter(d => !!d.repo),
           }
         })
     )
