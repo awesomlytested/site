@@ -205,7 +205,7 @@ export default {
     const dataFile = `${params.org.toLowerCase()}__${params.repo.toLowerCase()}`
     return (
       $axios
-        .get(`${$axios.defaults.baseURL}/data/${dataFile}.json`)
+        .get(`https://site-rho-nine.vercel.app/data/${dataFile}.json`)
         // eslint-disable-next-line arrow-body-style
         .then(({ data }) => {
           if (data.tests)

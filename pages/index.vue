@@ -208,7 +208,7 @@ export default {
   asyncData({ $axios, params }) {
     return (
       $axios
-        .get(`${$axios.defaults.baseURL}/data/list.json`)
+        .get(`https://site-rho-nine.vercel.app/data/list.json`)
         // eslint-disable-next-line arrow-body-style
         .then(({ data }) => {
           return {
