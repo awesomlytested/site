@@ -33,7 +33,7 @@ module.exports = {
     } else {
       await exec('git pull');
     }
-    fs.symlinkSync(path.join(__dirname, 'tmp/list/output'), path.join(__dirname, 'static/data'));
+    exec(`cp -r ${path.join(__dirname, 'tmp/list/output')} ${path.join(__dirname, 'static/data')}`);
     this.badges();
   }
 
