@@ -207,7 +207,8 @@ export default {
   },
   asyncData({ $axios, params }) {
     if (process.static) {
-      return import('../static/data/list.json').then((data) => {
+      return Promise.resolve({ data: [], list: []});
+      return import('@/static/data/list.json').then((data) => {
         console.log(data);
         return {
           data: [],
