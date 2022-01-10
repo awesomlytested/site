@@ -202,7 +202,7 @@ export default {
   },
 
   asyncData({ $axios, params }) {
-    const dataFile = `${params.org.toLowerCase()}__${params.repo.toLowerCase()}`;
+    const dataFile = `${params.org.toLowerCase()}__${params.repo.toLowerCase().replace('.', '_')}`;
 
     if (process.static) {      
       return import('~/static/data/' + dataFile + '.json').then(data => {
