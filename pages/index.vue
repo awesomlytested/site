@@ -11,6 +11,8 @@
       </div>
     </div>
 
+    {{rawData}}
+
     <main class="mt-16 mx-auto max-w-7xl px-4 mb-8 sm:mt-24">
       <div class="text-center">
         <h1
@@ -207,14 +209,13 @@ export default {
   },
   asyncData({ $axios, params }) {
     if (process.static) {
-      return {
-        data: [],
-        list: [],
-      }
       return import('~/static/data/list.json').then(data => {
         return {
-          data,
-          list: data.slice(0, 32).filter(d => !!d.repo),
+          rawData: data,
+          data: [],
+          list: [],          
+          // data,
+          // list: data.slice(0, 32).filter(d => !!d.repo),
         }
       });
     }
