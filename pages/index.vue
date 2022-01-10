@@ -207,16 +207,16 @@ export default {
   },
   asyncData({ $axios, params }) {
     if (process.static) {
-      return {
-        data: [],
-        list: [],
-      }
-      // return import('~/static/data/list.json').then(data => {
-      //   return {
-      //     data,
-      //     list: data.slice(0, 32).filter(d => !!d.repo),
-      //   }
-      // });
+      // return {
+      //   data: [],
+      //   list: [],
+      // }
+      return import('~/static/data/list.json').then(data => {
+        return {
+          data,
+          list: data.slice(0, 32).filter(d => !!d.repo),
+        }
+      });
     }
     
     const baseUrl = this.$axios.defaults.baseURL;
