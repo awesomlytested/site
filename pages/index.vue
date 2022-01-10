@@ -210,8 +210,8 @@ export default {
       return import('@/static/data/list.json').then((data) => {
         console.log(data);
         return {
-          data,
-          list: data.slice(0, 32).filter(d => !!d.repo),
+          // data,
+          list: [] // data.slice(0, 32).filter(d => !!d.repo),
         }
       });
     }
@@ -223,8 +223,8 @@ export default {
         // eslint-disable-next-line arrow-body-style
         .then(({ data }) => {
           return {
-            data,
-            list: data.slice(0, 32).filter(d => !!d.repo),
+            data: [],
+            list: [] // data.slice(0, 32).filter(d => !!d.repo),
           }
         })
     )
