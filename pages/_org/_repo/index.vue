@@ -202,21 +202,21 @@ export default {
   },
 
   asyncData({ $axios, params }) {
-    const dataFile = `${params.org.toLowerCase().replace('.', '_')}__${params.repo.toLowerCase().replace('.', '_')}`
+    const dataFile = `${params.org.toLowerCase()}__${params.repo.toLowerCase()}`;
 
-    if (process.static) {
-      return Promise.resolve({ data: {}, tests: []});
-      return import(`@/static/data/${dataFile}.json` ).then((data) => {
-        if (data.tests)
+    if (process.static) {      
+      return import('~/static/data/' + dataFile + '.json').then(data => {
+        if (data.tests) {
           data.tests.forEach((t) => {
-            t.codeIsShown = false
-            t.id = nanoid()
-          })
+            t.codeIsShown = false;
+            t.id = nanoid();
+          });
+        }
         return {
           data,
           tests: data.tests.slice(0, perPage),
         }
-      });      
+      });
     }
 
     const baseUrl = this.$axios.defaults.baseURL;
