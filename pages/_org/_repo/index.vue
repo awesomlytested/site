@@ -205,6 +205,7 @@ export default {
     const dataFile = `${params.org.toLowerCase().replace('.', '_')}__${params.repo.toLowerCase().replace('.', '_')}`
 
     if (process.static) {
+      return Promise.resolve({ data: {}, tests: []});
       return import(`@/static/data/${dataFile}.json` ).then((data) => {
         if (data.tests)
           data.tests.forEach((t) => {
