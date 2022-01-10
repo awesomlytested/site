@@ -33,7 +33,7 @@ module.exports = {
     } else {
       await exec('git pull');
     }
-    exec(`cp -r ${path.join(__dirname, 'tmp/list/output')} ${path.join(__dirname, 'static/data')}`);
+    await exec(`cp -r ${path.join(__dirname, 'tmp/list/output')} ${path.join(__dirname, 'static/data')}`);
     this.badges();
   }
 
