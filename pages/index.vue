@@ -207,10 +207,10 @@ export default {
   },
   asyncData({ $axios, params }) {
     if (process.static) {
-      return import('@/static/data/list.json').then((data) => {
+      return import('../static/data/list.json').then((data) => {
         console.log(data);
         return {
-          // data,
+          data: [],
           list: [] // data.slice(0, 32).filter(d => !!d.repo),
         }
       });
