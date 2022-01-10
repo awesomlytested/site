@@ -24,6 +24,7 @@ module.exports = {
       data.badge = badgeFile;
       fs.writeFileSync(file, JSON.stringify(data, null, 4))
     }
+    console.log('Badges generated.');
   },
 
   async predeploy() {
