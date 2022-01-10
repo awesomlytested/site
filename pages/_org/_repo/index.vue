@@ -205,7 +205,7 @@ export default {
     const dataFile = `${params.org.toLowerCase()}__${params.repo.toLowerCase()}`
 
     if (process.static) {
-      import(`@/static/data/${dataFile}.json` ).then((data) => {
+      return import(`@/static/data/${dataFile}.json` ).then((data) => {
         if (data.tests)
           data.tests.forEach((t) => {
             t.codeIsShown = false
