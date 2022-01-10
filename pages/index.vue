@@ -211,7 +211,7 @@ export default {
     if (process.static) {
       return import('~/static/data/list.json').then(data => {
         return {
-          rawData: data,
+          rawData: JSON.stringify(data),
           data: [],
           list: [],          
           // data,
