@@ -210,12 +210,10 @@ export default {
   asyncData({ $axios, params }) {
     if (process.static) {
       return import('~/static/data/list.json').then(data => {
+        data = Object.values(data);
         return {
-          rawData: JSON.stringify(data),
-          data: [],
-          list: [],          
-          // data,
-          // list: data.slice(0, 32).filter(d => !!d.repo),
+          data,
+          list: data.slice(0, 32).filter(d => !!d.repo),
         }
       });
     }
