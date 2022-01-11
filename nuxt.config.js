@@ -31,6 +31,7 @@ export default {
     { src: '@/plugins/vue-shortkey.js', mode: 'client' },
     { src: '@/plugins/infinite-scroll.js', mode: 'client' },
     { src: '@/plugins/vue-json-pretty.js', mode: 'client' },
+    { src: '@/plugins/vue-final-modal.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -59,12 +60,15 @@ export default {
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: '/',
+    browserBaseURL: '/',
     // port: process.env.API_PORT,
     // baseURL: '/'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    standalone: true,
+    transpile: ['vue-final-modal'],
     /*
      ** You can extend webpack config here
      */

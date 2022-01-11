@@ -51,15 +51,43 @@
         </div>
         <div class="flex-1 w-1/3 flex justify-end items-end">
           <div
+          role="button" 
             v-if="data.tests"
-            class="flex-init relative space-x-1 text-center text-xs text-gray-400"
+            @click="showBadgeModal = true"
+            class="flex-init cursor-pointer relative space-x-1 text-center text-xs text-gray-400"
           >
             <img
               :src="'/badges/' + data.badge"
               style="width: 135px; height: 30px"
             />
             <div class="text-center">Copy this badge! &uarr;</div>
+
+
           </div>
+
+    <BadgeModal v-model="showBadgeModal" @confirm="confirm" @cancel="cancel">
+      <template v-slot:title>Badges</template>
+      <div>
+        <div class="text-sm text-gray-400 text-center text-sm mb-8 font-bold">
+          &darr; Select and copy the badge you like &darr;
+        </div>
+        
+        <div class="mb-4">
+          <img :src="'/badges/' + data.badge" />
+          <input class="copy-input" onClick="this.select();" type="text"  :value="mainBadgeMarkdown">
+        </div>
+
+        <div v-if="data.badge2" class="mb-4">
+          <img :src="'/badges/' + data.badge2" />
+          <input class="copy-input" onClick="this.select();" type="text" :value="secondaryBadgeMarkdown">
+        </div>
+
+        <div v-if="data.badge3" class="mb-4">
+          <img :src="'/badges/' + data.badge3" />
+          <input class="copy-input" onClick="this.select();" type="text" :value="thirdBadgeMarkdown">
+        </div>
+      </div>
+    </BadgeModal>
         </div>
       </div>
     </div>
@@ -189,6 +217,7 @@ import 'vue-code-highlight/themes/prism-solarizedlight.css'
 import { VueAutosuggest } from 'vue-autosuggest'
 import Fuse from 'fuse.js'
 import GitHub from '~/components/GitHub.vue'
+import BadgeModal from '~/components/BadgeModal.vue'
 // import "vue-code-highlight/themes/window.css";
 
 const perPage = 50
@@ -199,7 +228,8 @@ export default {
     VueAutosuggest,
     VueCodeHighlight,
     GitHub,
-  },
+    BadgeModal
+},
 
   asyncData({ $axios, params }) {
     const dataFile = `${params.org.toLowerCase()}__${params.repo.toLowerCase().replace('.', '_')}`;
@@ -245,10 +275,22 @@ export default {
       testsIndex: 0,
       filtered: false,
       query: null,
+      showBadgeModal: false,
     }
   },
 
   computed: {
+    mainBadgeMarkdown() {
+      return `[![Tests](https://awesomlytested.com/badges/${this.data.badge})](https://awesomlytested.com/${this.data.repo})`;
+    },
+    secondaryBadgeMarkdown() {
+      return `[![Tests](https://awesomlytested.com/badges/${this.data.badge2})](https://awesomlytested.com/${this.data.repo})`;
+    },    
+    thirdBadgeMarkdown() {
+      return `[![Tests](https://awesomlytested.com/badges/${this.data.badge3})](https://awesomlytested.com/${this.data.repo})`;
+    },    
+
+
     searchHotkey() {
       if (typeof navigator === 'undefined') return ''
       if (/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) return '[Cmd+K]'
@@ -264,6 +306,15 @@ export default {
   },
 
   methods: {
+    confirm() {
+      // some code...
+      this.showBadgeModal = false
+    },
+    cancel(close) {
+      // some code...
+      close()
+    },
+
     focusSearch() {
       document.getElementById('autosuggest__input').focus()
     },
@@ -402,5 +453,9 @@ export default {
   outline: 2px solid transparent;
   outline-offset: 2px;
   @apply ring-2;
+}
+
+.copy-input {
+  @apply w-96 p-4 rounded border border-gray-200 text-sm text-gray-400 font-mono mb-8;
 }
 </style>
